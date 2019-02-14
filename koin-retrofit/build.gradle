@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 
@@ -7,28 +6,6 @@ ext {
     retrofit_version = '2.5.0'
     okhttp3_version = '3.13.1'
     koin_version = '1.0.2'
-
-    bintrayRepo = 'koin-retrofit'
-    bintrayName = 'koin-retrofit'
-
-    publishedGroupId = 'se.holmberg.koin-retrofit'
-    libraryName = 'koin'
-    artifact = 'koin'
-
-    libraryDescription = 'Utilities for retrofit in koin'
-
-    siteUrl = 'https://github.com/antonholmberg/koinretrofit'
-    gitUrl = 'https://github.com/antonholmberg/koinretrofit.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'developerId'
-    developerName = 'Anton Holmberg'
-    developerEmail = 'anton.holmberg@protonmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
 }
 
 android {
@@ -38,7 +15,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName project.getProperty('libraryVersion')
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -51,11 +28,17 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
+
+apply from: 'https://raw.githubusercontent.com/kostasdrakonakis/maven-upload/master/bintray.gradle'
+apply from: 'https://raw.githubusercontent.com/kostasdrakonakis/maven-upload/master/publications.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
     implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
     implementation "com.squareup.okhttp3:okhttp:${okhttp3_version}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -67,6 +50,3 @@ dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"
 }
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
