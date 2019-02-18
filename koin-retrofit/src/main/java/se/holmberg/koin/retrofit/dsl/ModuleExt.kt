@@ -33,11 +33,11 @@ fun ModuleDefinition.converterFactory(
     single(name, false, override, definition)
 }
 
-inline fun <reified T : Any> ModuleDefinition.retrofitApi(): T {
-    val retrofit: Retrofit = get()
+inline fun <reified T : Any> ModuleDefinition.retrofitApi(retrofitName: String = ""): T {
+    val retrofit: Retrofit = get(name = retrofitName)
 
     return getApi(T::class)
-        ?: retrofit.create(T::class.java).also { putApi(it) }
+        ?: retrofit.create(T::class.java).also { putApi(it, retrofitName) }
 }
 
 fun ModuleDefinition.retrofit(
