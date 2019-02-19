@@ -42,10 +42,12 @@ inline fun <reified T : Any> ModuleDefinition.retrofitApi(retrofitName: String =
 
 fun ModuleDefinition.retrofit(
     baseUrl: String,
-    client: OkHttpClient = OkHttpClient.Builder().build()
+    client: OkHttpClient = OkHttpClient.Builder().build(),
+    callAdapterName: String = "",
+    converterFactoryName: String = ""
 ): Retrofit = Retrofit.Builder()
-    .addCallAdapterFactory(get())
-    .addConverterFactory(get())
+    .addCallAdapterFactory(get(callAdapterName))
+    .addConverterFactory(get(converterFactoryName))
     .client(client)
     .baseUrl(baseUrl)
     .build()
