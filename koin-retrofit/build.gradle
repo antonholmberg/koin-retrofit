@@ -7,15 +7,15 @@ ext {
     okhttp3_version = '3.13.1'
     koin_version = '1.0.2'
 
-    bintrayRepo = 'maven' // your repo name
+    bintrayRepo = 'koin-retrofit' // your repo name
     bintrayName = 'koin-retrofit' // has to be same as your library module name
     publishedGroupId = 'se.holmberg.koin-retrofit' // your module package name
     libraryName = 'koin-retrofit'
     artifact = 'koin-retrofit' // has to be same as your library module name
     libraryDescription = 'A library to help out with koin and retrofit'
-    siteUrl = 'https://github.com/androidCode/time-utils'
-    gitUrl = 'https://github.com/androidCode/time-utils.git'
-    libraryVersion = '0.1.0'
+    siteUrl = 'https://github.com/antonholmberg/koin-retrofit'
+    gitUrl = 'https://github.com/antonholmberg/koin-retrofit.git'
+    libraryVersion = '0.0.1'
     developerId = 'antonholmberg'
     developerName = 'Anton Holmberg'
     developerEmail = 'anton.holmberg@protonmail.com'
